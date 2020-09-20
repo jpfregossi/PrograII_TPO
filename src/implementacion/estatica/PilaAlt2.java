@@ -1,4 +1,4 @@
-package Implementations;
+package implementacion.estatica;
 
 import Interface.PilaAlt2TDA;
 

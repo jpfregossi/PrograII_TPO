@@ -1,4 +1,4 @@
-package Implementations;
+package implementacion.estatica;
 
 public class ColaConPrioridad {
 
