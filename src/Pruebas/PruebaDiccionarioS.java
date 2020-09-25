@@ -3,10 +3,11 @@ package Pruebas;
 import java.util.Scanner;
 
 import Interface.DiccionarioSimpleTDA;
+import implementacion.dinamica.DiccionarioSimpleD;
 import implementacion.estatica.DiccionarioSimpleE;
 
 public class PruebaDiccionarioS {
-	private DiccionarioSimpleTDA dse = new DiccionarioSimpleE();
+	private DiccionarioSimpleTDA dse = new DiccionarioSimpleD();
 	private Scanner teclado = new Scanner(System.in);
 	private int clave, x, opc;
 	
