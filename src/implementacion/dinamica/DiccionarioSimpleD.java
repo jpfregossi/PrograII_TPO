@@ -1,5 +1,6 @@
 package implementacion.dinamica;
 
+import Interface.ConjuntoTDA;
 import Interface.DiccionarioSimpleTDA;
 
 public class DiccionarioSimpleD implements DiccionarioSimpleTDA {
@@ -63,24 +64,12 @@ public class DiccionarioSimpleD implements DiccionarioSimpleTDA {
 		return buscarNodo(clave).valor;
 	}
 	
-	public int[] claves() {
-		Nodo nodo = new Nodo();
-		nodo.sig = inicio;
-		int cont = 0;
-		int dimension = 1;
-		int [] claves = new int[dimension];
-		while ( nodo.sig != null ) {
-			if ( cont > dimension-1) { 
-				int [] clavesTemp = claves;
-				dimension *= 2; 
-				claves = new int[dimension];
-				for ( int i = 0 ; i < (dimension/2) ; i++ ) {
-					claves[i] = clavesTemp[i];
-				}
-			}
-			claves[cont] = nodo.sig.clave;
-			nodo = nodo.sig;
-			cont++;
+	public ConjuntoTDA claves() {
+		ConjuntoTDA claves = new ConjuntoD();
+		Nodo n = inicio;
+		while ( n != null ){
+			claves.agregar(n.clave);
+			n = n.sig;
 		}
 		return claves;
 	}

@@ -1,29 +1,29 @@
 package Interface;
 
 /*
-Definición del TDA Conjunto de valores enteros
-Conjunto es una estructura que permite almacenar una colección de valores enteros, no repetidos y no necesariamente ordenado.
-Operaciones básicas:
+Definiciï¿½n del TDA Conjunto de valores enteros
+Conjunto es una estructura que permite almacenar una colecciï¿½n de valores enteros, no repetidos y no necesariamente ordenado.
+Operaciones bï¿½sicas:
 InicializarConjunto: inicializa el conjunto.
 Agregar: agrega un elemento x suministrado. El conjunto debe estar inicializado y el elemento no debe existir.
 Sacar: elimina un elemento suministrado x. EL elemento debe pertenecer al conjunto.
-Obtener: devuelve un valor cualquiera del conjunto. El elemento no se elimina. El conjunto no debe estar vacío.
+Obtener: devuelve un valor cualquiera del conjunto. El elemento no se elimina. El conjunto no debe estar vacï¿½o.
 ConjuntoVacio: devuelve verdadero si el conjunto tiene elementos. El conjunto debe estar inicializado.
-Pertenece: devuelve verdadero si el valor x recibido como parámetro pertenece al conjunto. El conjunto debe estar inicializado. 
+Pertenece: devuelve verdadero si el valor x recibido como parï¿½metro pertenece al conjunto. El conjunto debe estar inicializado. 
 */
 
 public interface ConjuntoTDA {
 
-	public void InicializarConjunto();
+	public void inicializarConjunto();
 	
-	public void Agregar(int x);
+	public void agregar(int x);
 	
-	public void Sacar();
+	public void sacar(int x);
 	
-	public int Obtener();
+	public int obtener();
 	
-	public Boolean ConjuntoVacio();
+	public Boolean conjuntoVacio();
 	
-	public Boolean Pertenece();
+	public Boolean pertenece(int x);
 	
 }

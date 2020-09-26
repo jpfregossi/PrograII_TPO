@@ -2,7 +2,7 @@ package implementacion.dinamica;
 
 import Interface.ColaConPrioridadTDA;
 
-public class ColaConPrioridadE implements ColaConPrioridadTDA{
+public class ColaConPrioridadD implements ColaConPrioridadTDA{
 	
 	class Nodo{
 		int p, d;

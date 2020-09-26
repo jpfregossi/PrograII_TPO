@@ -1,9 +1,9 @@
 package Interface;
 
 /*
-Definición del TDA Diccionario simple, las claves y valores almacenados son enteros
-Diccionario simple es una colección de pares asociados (clave, valor), las claves son únicas. No puede existir clave sin valor asociado.
-Operaciones básicas:
+DefiniciÃ³n del TDA Diccionario simple, las claves y valores almacenados son enteros
+Diccionario simple es una colecciÃ³n de pares asociados (clave, valor), las claves son Ãºnicas. No puede existir clave sin valor asociado.
+Operaciones bÃ¡sicas:
 InicializarDiccionarioSimple: inicializa el diccionario.
 Agregar: permite agregar un elemento x a una clave suministrados. El diccionario debe estar inicializado y no debe existir.
 Eliminar: permite eliminar una clave suministrada. La clave debe existir.
@@ -21,6 +21,6 @@ public interface DiccionarioSimpleTDA {
 	
 	public int obtener(int clave);
 	
-	public int[] claves();
+	public ConjuntoTDA claves();
 
 }

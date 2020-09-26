@@ -2,49 +2,42 @@ package Pruebas;
 
 import java.util.Scanner;
 
+import Interface.ConjuntoTDA;
 import Interface.DiccionarioSimpleTDA;
 import implementacion.dinamica.DiccionarioSimpleD;
 import implementacion.estatica.DiccionarioSimpleE;
 
-public class PruebaDiccionarioS {
-	private DiccionarioSimpleTDA dse = new DiccionarioSimpleD();
-	private Scanner teclado = new Scanner(System.in);
-	private int clave, x, opc;
+public class PruebaDiccionario {
 	
-	public void startTest() {
-		dse.inicializarDiccionarioSimple();
-		cargarDS();
-		mostrarDS();
+	public static void test(DiccionarioSimpleTDA ds) {
+		ds.inicializarDiccionarioSimple();
+		mostrarDS(cargarDS(ds));
 	}
 	
-	private void cargarDS() {
+	private static DiccionarioSimpleTDA cargarDS(DiccionarioSimpleTDA ds) {
+		Scanner teclado = new Scanner(System.in);
 		System.out.println("\nIngrese la clave del elemento (o -1 para finalizar):");
-		clave = teclado.nextInt();
-		
+		int clave = teclado.nextInt();
+		int x;
 		while ( clave != (-1) ) {
 			System.out.println("Ingrese la valor del elemento '" + clave + "' (o -1 para finalizar):");
 			x = teclado.nextInt();
 			
-			int[] claves = dse.claves();
+			ConjuntoTDA claves = ds.claves();
 			boolean pertenece = false;
 			
 			if ( claves != null ) {
-				for ( int c: claves ) {
-					if ( clave == c ) {
-						pertenece = true;
-						break;
-					}
-				}
+				claves.pertenece(clave);
 			}
 			
 			if ( !pertenece ) {
-				dse.agregar(clave, x);
+				ds.agregar(clave, x);
 			}
-			else if ( dse.obtener(clave) != x) {
+			else if ( ds.obtener(clave) != x) {
 				System.out.println("Desea modificar el valor '" + x + "' del elemento '" + clave + "'? (1: modificar, 0: dejar antiguo valor):");
 				int resp = teclado.nextInt();
 				
-				if ( resp == 1 ) dse.agregar(clave, x);
+				if ( resp == 1 ) ds.agregar(clave, x);
 				else System.out.println("El valor no se modifico.");
 			}
 			else System.out.println("El elemnto ingresado ya existe dentro del diccionario.");
@@ -52,14 +45,17 @@ public class PruebaDiccionarioS {
 			System.out.println("\nIngrese la clave del elemento (o -1 para finalizar):");
 			clave = teclado.nextInt();
 		}
+		return ds;
 		
 	}
 	
-	private void mostrarDS() {
-		int [] claves = dse.claves();
+	private static void mostrarDS(DiccionarioSimpleTDA ds) {
+		ConjuntoTDA claves = ds.claves();
 		System.out.println("\n---------- Diccionario ----------");
-		for (int c: claves) {
-			System.out.println("{ clave: '" + c + "', valor: '" + dse.obtener(c) + "'}");
+		while (!claves.conjuntoVacio()) {
+			int c = claves.obtener();
+			System.out.println("{ clave: '" + c + "', valor: '" + ds.obtener(c) + "'}");
+			claves.sacar(c);
 		}
 		System.out.println("---------------------------------");
 	}
