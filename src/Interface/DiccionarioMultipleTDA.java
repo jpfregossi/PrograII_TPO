@@ -25,6 +25,6 @@ public interface DiccionarioMultipleTDA {
 	
 	public ConjuntoTDA obtener(int clave);
 	
-	public ConjuntoTDA claves(int clave);
+	public ConjuntoTDA claves();
 	
 }

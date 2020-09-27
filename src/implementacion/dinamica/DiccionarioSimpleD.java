@@ -18,8 +18,6 @@ public class DiccionarioSimpleD implements DiccionarioSimpleTDA {
 	}
 	
 	public void agregar(int clave, int valor) {
-		System.out.println("agregando valor.");
-		
 		if ( inicio == null ) {
 			cargarInicio(clave, valor, null);
 		}
@@ -79,7 +77,7 @@ public class DiccionarioSimpleD implements DiccionarioSimpleTDA {
 		inicio.clave = clave;
 		inicio.valor = valor;
 		inicio.sig = sig;
-		System.out.println("cargar inicio: " + inicio.clave + " ; " + inicio.valor);
+		//System.out.println("cargar inicio: " + inicio.clave + " ; " + inicio.valor);
 	}
 	
 	private Nodo buscarNodo(int clave) {

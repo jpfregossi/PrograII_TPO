@@ -59,7 +59,7 @@ public class DiccionarioMultipleD implements DiccionarioMultipleTDA {
         return buscarNodo(clave).valores;
     }
 	
-    public ConjuntoTDA claves(int clave){
+    public ConjuntoTDA claves(){
         ConjuntoTDA claves = new ConjuntoD();
 		Nodo n = inicio;
 		while ( n != null ){
