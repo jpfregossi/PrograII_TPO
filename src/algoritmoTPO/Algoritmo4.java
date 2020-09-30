@@ -20,11 +20,11 @@ public class Algoritmo4 {
 	}
 	
 	public void codigo(int movimiento) {
-		this.codigoPelicula = 0;
+		int x = 1;
 		for(int i = 0; i < 4; i++) {
-			this.codigoPelicula = movimiento % 10;
-			movimiento = movimiento / 10;
+			x = x*10;
 		}
+		this.codigoPelicula = movimiento % x;
 	}
 	
 	public void cargar() {
