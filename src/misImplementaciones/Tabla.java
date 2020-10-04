@@ -64,7 +64,7 @@ public class Tabla implements TablaTDA {
 		ColaCadenaTDA cola = new ColaCadena();
 		Elemento e = inicio;
 		while (e != null) {
-			cola.acolar(e.nombre);
+			cola.acolar(e.codigo + "; " + e.nombre);
 			e = e.sig;
 		}
 
