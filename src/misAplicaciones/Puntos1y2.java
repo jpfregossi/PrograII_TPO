@@ -93,10 +93,9 @@ public class Puntos1y2 {
 	}
 	
 	private static String obtenerNombrePorCodigo(TablaTDA tabla, int c) {
-		ColaCadenaTDA colaTabla = tabla.tabla();
-		ColaPrioridadTDA nombrePorCodigo = new ColaPrioridad();
-		
+		ColaCadenaTDA colaTabla = tabla.tabla();	
 		String [] elemento = new String[2];
+		
 		while ( !colaTabla.colaVacia() ) {
 			elemento = colaTabla.primero().split("; ");
 			int codigo = Integer.valueOf(elemento[0]);
