@@ -67,7 +67,7 @@ public class DiccionarioSimple implements Interfaces.DiccionarioSimpleTDA {
 		Nodo actual;
 		actual = inicio;
 		while(actual != null) {
-			claves.agregar(actual.x);
+			claves.agregar(actual.clave);
 			actual = actual.sig;
 		}
 		return claves;
