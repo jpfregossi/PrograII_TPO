@@ -17,11 +17,14 @@ public class Puntos1y2 {
 		DiezUltimosMovimientos primerPuntoAlgo = new DiezUltimosMovimientos();
 		
 		MasSolicitadas tercerPuntoAlgo = new MasSolicitadas();
+		Ranking cuartoPuntoAlgo = new Ranking();
 	
 		while ( !listado.colaVacia() ) {
-			primerPuntoAlgo.cargar(listado.primero());
+			int elemento = listado.primero();
+			primerPuntoAlgo.cargar(elemento);
 			
 			tercerPuntoAlgo.cargarMovimiento(listado.primero());
+			cuartoPuntoAlgo.cargar(elemento);
 			
 			listado.desacolar();
 		}
@@ -48,7 +51,7 @@ public class Puntos1y2 {
 			primerPuntoCola.desacolar();
 		}
 		System.out.println("----------------------------------------------------------");
-		/* ----------------------------------------- */
+		/* ------------- */
 		
 		/* Segundo Punto */
 		
@@ -69,11 +72,24 @@ public class Puntos1y2 {
 				//cadenaProveedores += p + ", ";
 				provs.sacar(p);
 			}
-			System.out.println(obtenerNombrePorCodigo(peliculas,clave) + " ( " + cadenaProveedores.substring(0,cadenaProveedores.length() - 2) + " )");
+			System.out.println( "( " + clave + " ) " + obtenerNombrePorCodigo(peliculas,clave) + " ( " + cadenaProveedores.substring(0,cadenaProveedores.length() - 2) + " )");
 			//System.out.println(clave + " " + cadenaProveedores.substring(0,cadenaProveedores.length() - 2) );
 			tercerPuntoClaves.sacar(clave);
 		}
 		/* ------------- */
+		
+		/* Cuarto Punto */
+		cuartoPuntoAlgo.ordenar();
+		ColaPrioridadTDA cuartoPuntoCola = cuartoPuntoAlgo.getTop10Peliculas();
+		System.out.println("\nRanking 10 Más Vistas:\n");
+		
+		while ( !cuartoPuntoCola.colaVacia() ) {
+			int peli = cuartoPuntoCola.primero();
+			//System.out.println( cuartoPuntoCola.prioridad() + ") " + obtenerNombrePorCodigo(peliculas, peli));
+			System.out.println( cuartoPuntoCola.prioridad() + ") " + peli );
+			cuartoPuntoCola.desacolar();
+		}
+		/* ------------ */
 	}
 	
 	private static String obtenerNombrePorCodigo(TablaTDA tabla, int c) {
