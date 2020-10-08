@@ -1,16 +1,12 @@
-import implementacion.dinamica.*;
-import implementacion.estatica.*;
-import Interface.*;
-
-import Pruebas.*;
+import misAplicaciones.Puntos1y2;
 
 public class Principal {
 
 	public static void main(String[] args) {
 		
-		System.out.println("Trabajo Práctico Obligatorio - Programación II\n");
-
-
+		System.out.println("Trabajo Practico Obligatorio - Proasdasdgramacion II\n");
+		
+		Puntos1y2.correr();
 	}
 
 }
