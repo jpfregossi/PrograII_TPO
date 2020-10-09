@@ -20,22 +20,21 @@ public class Ranking {
 	}
 	
 	public void codigo(int movimiento) {
-		int x = 1;
-		for(int i = 0; i < 4; i++) {
-			x = x*10;
-		}
-		this.codigoPelicula = movimiento % x;
+		this.codigoPelicula = movimiento % 10000;
+		cargar();
 	}
 	
 	public void cargar() {
 		if (listaCantidadPeliculas.claves().pertenece(codigoPelicula)) {
 			int i = listaCantidadPeliculas.obtener(codigoPelicula);
 			i++;
-			listaCantidadPeliculas.agregar(i , codigoPelicula);
+			listaCantidadPeliculas.eliminar(codigoPelicula);
+			listaCantidadPeliculas.agregar(codigoPelicula, i);
 		} else {
-			listaCantidadPeliculas.agregar(1 , codigoPelicula);
+			listaCantidadPeliculas.agregar(codigoPelicula, 1);
 		}
 	}
+	
 	public void ordenar() {
 		ColaPrioridadTDA auxCola = new ColaPrioridad();
 		auxCola.inicializarCola();
