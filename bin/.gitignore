@@ -1,2 +1,5 @@
-.classpath
-*.class
+/miApi/
+/misAlgoritmos/
+/misAplicaciones/
+/misImplementaciones/
+/resources/

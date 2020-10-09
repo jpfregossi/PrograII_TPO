@@ -7,28 +7,35 @@ import misImplementaciones.ColaPrioridad;
 import misImplementaciones.DiccionarioSimple;
 
 public class Ranking {
+	private int codigoPelicula;
 	private DiccionarioSimpleTDA listaCantidadPeliculas;
 	private ColaPrioridadTDA top10Peliculas;
 	
 	public Ranking() {
+		codigoPelicula = 0;
 		listaCantidadPeliculas = new DiccionarioSimple();
 		top10Peliculas = new ColaPrioridad();
 		listaCantidadPeliculas.inicializarDiccionarioSimple();
 		top10Peliculas.inicializarCola();
 	}
 	
-	public void cargar(int mov) {
-		int codigoPelicula = mov % 10000;
+	public void codigo(int movimiento) {
+		int x = 1;
+		for(int i = 0; i < 4; i++) {
+			x = x*10;
+		}
+		this.codigoPelicula = movimiento % x;
+	}
+	
+	public void cargar() {
 		if (listaCantidadPeliculas.claves().pertenece(codigoPelicula)) {
 			int i = listaCantidadPeliculas.obtener(codigoPelicula);
 			i++;
-			listaCantidadPeliculas.eliminar(codigoPelicula);
-			listaCantidadPeliculas.agregar(codigoPelicula, i);
+			listaCantidadPeliculas.agregar(i , codigoPelicula);
 		} else {
-			listaCantidadPeliculas.agregar(codigoPelicula, 1);
+			listaCantidadPeliculas.agregar(1 , codigoPelicula);
 		}
 	}
-	
 	public void ordenar() {
 		ColaPrioridadTDA auxCola = new ColaPrioridad();
 		auxCola.inicializarCola();
@@ -36,12 +43,14 @@ public class Ranking {
 		int x = 0;
 		while(!auxConjunto.conjuntoVacio()) {
 			x = auxConjunto.obtener();
-			auxCola.acolarPrioridad(listaCantidadPeliculas.obtener(x),x);
+			auxCola.acolarPrioridad(x,listaCantidadPeliculas.obtener(x));
 			auxConjunto.sacar(x);
 		}
-		for(int i = 0; i < 10; i++) {
-			this.top10Peliculas.acolarPrioridad(auxCola.prioridad(), auxCola.primero());
+		int i = 0;
+		while(!auxCola.colaVacia() && i < 10) {
+			this.top10Peliculas.acolarPrioridad(auxCola.primero(),auxCola.prioridad());
 			auxCola.desacolar();
+			i++;
 		}
 	}
 	

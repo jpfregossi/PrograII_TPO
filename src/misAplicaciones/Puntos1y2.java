@@ -24,7 +24,8 @@ public class Puntos1y2 {
 			primerPuntoAlgo.cargar(elemento);
 			
 			tercerPuntoAlgo.cargarMovimiento(listado.primero());
-			cuartoPuntoAlgo.cargar(elemento);
+			cuartoPuntoAlgo.codigo(elemento);
+			cuartoPuntoAlgo.cargar();
 			
 			listado.desacolar();
 		}
@@ -79,6 +80,7 @@ public class Puntos1y2 {
 		/* ------------- */
 		
 		/* Cuarto Punto */
+		
 		cuartoPuntoAlgo.ordenar();
 		ColaPrioridadTDA cuartoPuntoCola = cuartoPuntoAlgo.getTop10Peliculas();
 		System.out.println("\nRanking 10 Más Vistas:\n");
