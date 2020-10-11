@@ -1,5 +1,6 @@
 package misAplicaciones;
 
+import miApi.ConjuntoTDA;
 import miApi.*;
 import misAlgoritmos.*;
 import misImplementaciones.ColaPrioridad;
@@ -18,16 +19,16 @@ public class Puntos1y2 {
 		
 		MasSolicitadas tercerPuntoAlgo = new MasSolicitadas();
 		Ranking cuartoPuntoAlgo = new Ranking();
-	
+	    Algoritmo5TPO quintoPuntoAlgo = new Algoritmo5TPO();
 		while ( !listado.colaVacia() ) {
 			int elemento = listado.primero();
 			primerPuntoAlgo.cargar(elemento);
-			
 			tercerPuntoAlgo.cargarMovimiento(listado.primero());
 			cuartoPuntoAlgo.codigo(elemento);
-			
+			quintoPuntoAlgo.codigo(elemento);
 			listado.desacolar();
 		}
+		quintoPuntoAlgo.codigo(141010431);
 		
 		/* Primer Punto */
 		ColaTDA primerPuntoCola = primerPuntoAlgo.getUltimos10Movimientos();
@@ -58,9 +59,9 @@ public class Puntos1y2 {
 		/* ------------ */
 		
 		/* Quinto Punto */
-		
-		
-
+		quintoPuntoAlgo.ordenar();
+		DiccionarioMultipleTDA quintoPuntoDic = quintoPuntoAlgo.getPeliculasIguales();
+		imprimirQuintoPunto(quintoPuntoDic);
 		/* ------------ */
 	}
 	
@@ -175,6 +176,29 @@ public class Puntos1y2 {
 			int peli = cola.primero();
 			System.out.println( cola.prioridad() + ") " + obtenerNombrePorCodigo(peliculas, peli));
 			cola.desacolar();
+		}
+	}
+	private static void imprimirQuintoPunto(DiccionarioMultipleTDA dic) {
+		System.out.println();
+		System.out.println("Peliculas Iguales");
+		System.out.println("-----------------------");
+		System.out.println("Id    | Pelicula | Proveedores");
+		System.out.println("-----------------------");
+		ConjuntoTDA claves = dic.claves();
+		while(!claves.conjuntoVacio()) {
+			int x = claves.obtener();
+			int a = x/10000;
+			int p = x%10000;
+			ConjuntoTDA aux2 = dic.obtener(x);
+			System.out.print(a+":  "+p+ "(");
+			while(!aux2.conjuntoVacio()) {
+				int v = aux2.obtener();
+				System.out.print(v+",");
+				aux2.sacar(v);
+			}
+			System.out.print(")");
+			claves.sacar(x);
+			System.out.println();
 		}
 	}
 }
