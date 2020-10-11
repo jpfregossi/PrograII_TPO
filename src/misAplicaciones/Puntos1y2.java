@@ -57,7 +57,7 @@ public class Puntos1y2 {
 		/* ------------ */
 		
 		/* Quinto Punto */
-		//quintoPuntoAlgo.ordenar();
+		quintoPuntoAlgo.ordenar();
 		DiccionarioMultipleTDA b = quintoPuntoAlgo.getPeliculasIguales();
 		ConjuntoTDA claves = b.claves();
 		
