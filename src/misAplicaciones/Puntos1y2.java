@@ -2,9 +2,6 @@ package misAplicaciones;
 
 import miApi.*;
 import misAlgoritmos.*;
-import misImplementaciones.ColaPrioridad;
-import misImplementaciones.DiccionarioMultiple;
-import misImplementaciones.DiccionarioSimple;
 
 public class Puntos1y2 {
 	
@@ -18,6 +15,7 @@ public class Puntos1y2 {
 		
 		MasSolicitadas tercerPuntoAlgo = new MasSolicitadas();
 		Ranking cuartoPuntoAlgo = new Ranking();
+		SolicitudesDistintosProveedores quintoPuntoAlgo = new SolicitudesDistintosProveedores();
 	
 		while ( !listado.colaVacia() ) {
 			int elemento = listado.primero();
@@ -25,6 +23,7 @@ public class Puntos1y2 {
 			
 			tercerPuntoAlgo.cargarMovimiento(listado.primero());
 			cuartoPuntoAlgo.codigo(elemento);
+			quintoPuntoAlgo.codigo(elemento);
 			
 			listado.desacolar();
 		}
@@ -58,13 +57,29 @@ public class Puntos1y2 {
 		/* ------------ */
 		
 		/* Quinto Punto */
+		//quintoPuntoAlgo.ordenar();
+		DiccionarioMultipleTDA b = quintoPuntoAlgo.getPeliculasIguales();
+		ConjuntoTDA claves = b.claves();
 		
+		System.out.print("\nSolicitudes de Películas a Distintos Proveederes por Usuario:\n");
 		
-
-		/* ------------ */
+		while(!claves.conjuntoVacio()) {
+			int x = claves.obtener();
+			int usuario = x / 10000;
+			int pelicula = x % 10000;
+			ConjuntoTDA aux2 = b.obtener(x);
+			System.out.print( usuario + ":  " + pelicula + "(");
+			
+			while(!aux2.conjuntoVacio()) {
+				int v = aux2.obtener();
+				System.out.print(v+",");
+				aux2.sacar(v);
+			}
+			System.out.print(")");
+			claves.sacar(x);
+			System.out.println();
+		}
 	}
-	
-	
 	
 	private static String obtenerNombrePorCodigo(TablaTDA tabla, int c) {
 		ColaCadenaTDA colaTabla = tabla.tabla();	
@@ -149,11 +164,9 @@ public class Puntos1y2 {
 			while ( !provs.conjuntoVacio() ) {
 				int p = provs.obtener();
 				cadenaProveedores += obtenerNombrePorCodigo(proveedores, p) + ", ";
-				//cadenaProveedores += p + ", ";
 				provs.sacar(p);
 			}
 			System.out.println( "( " + clave + " ) " + obtenerNombrePorCodigo(peliculas,clave) + " ( " + cadenaProveedores.substring(0,cadenaProveedores.length() - 2) + " )");
-			//System.out.println(clave + " " + cadenaProveedores.substring(0,cadenaProveedores.length() - 2) );
 			c.sacar(clave);
 		}
 	}
