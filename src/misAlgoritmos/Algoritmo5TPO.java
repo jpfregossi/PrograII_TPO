@@ -44,11 +44,11 @@ public class Algoritmo5TPO {
 				aux2.sacar(x);
 				cant++;
 			}
-			aux1.sacar(c);
-			if (cant==1) {
+			if (cant<2) {
 				peliculasIguales.eliminar(c);
 			}
 			cant = 0;
+			aux1.sacar(c);
 		}
 	}
 	public DiccionarioMultipleTDA getPeliculasIguales() {
