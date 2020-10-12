@@ -2,6 +2,7 @@ package misImplementaciones;
 import miApi.ConjuntoTDA;
 import miApi.DiccionarioMultipleTDA;
 public class DiccionarioMultiple implements DiccionarioMultipleTDA {
+	
 	class Nodo{
 		int c;
 		NodoValor primer;

@@ -1,17 +1,19 @@
 package misAlgoritmos;
+
 import miApi.ConjuntoTDA;
 import miApi.DiccionarioMultipleTDA;
+import miApi.DiccionarioSimpleTDA;
 import misImplementaciones.DiccionarioMultiple;
+import misImplementaciones.DiccionarioSimple;
 
-public class Algoritmo5TPO {
-	
+public class SolicitudesDistintosProveedores {
 	private int codigoPelicula;
 	private int codigoProveedor;
 	private int codigoCliente;
 	private DiccionarioMultipleTDA peliculasIguales;
 	
 	
-	public Algoritmo5TPO(){
+	public SolicitudesDistintosProveedores(){
 		peliculasIguales = new DiccionarioMultiple();
 		peliculasIguales.inicializarDiccionarioMultiple();
 	}
@@ -44,11 +46,11 @@ public class Algoritmo5TPO {
 				aux2.sacar(x);
 				cant++;
 			}
-			if (cant<2) {
+			aux1.sacar(c);
+			if (cant==1) {
 				peliculasIguales.eliminar(c);
 			}
 			cant = 0;
-			aux1.sacar(c);
 		}
 	}
 	public DiccionarioMultipleTDA getPeliculasIguales() {

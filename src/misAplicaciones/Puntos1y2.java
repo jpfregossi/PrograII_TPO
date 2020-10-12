@@ -3,9 +3,6 @@ package misAplicaciones;
 import miApi.ConjuntoTDA;
 import miApi.*;
 import misAlgoritmos.*;
-import misImplementaciones.ColaPrioridad;
-import misImplementaciones.DiccionarioMultiple;
-import misImplementaciones.DiccionarioSimple;
 
 public class Puntos1y2 {
 	
@@ -19,7 +16,9 @@ public class Puntos1y2 {
 		
 		MasSolicitadas tercerPuntoAlgo = new MasSolicitadas();
 		Ranking cuartoPuntoAlgo = new Ranking();
-	    Algoritmo5TPO quintoPuntoAlgo = new Algoritmo5TPO();
+
+
+		SolicitudesDistintosProveedores quintoPuntoAlgo = new SolicitudesDistintosProveedores();
 		while ( !listado.colaVacia() ) {
 			int elemento = listado.primero();
 			primerPuntoAlgo.cargar(elemento);
@@ -60,12 +59,28 @@ public class Puntos1y2 {
 		
 		/* Quinto Punto */
 		quintoPuntoAlgo.ordenar();
-		DiccionarioMultipleTDA quintoPuntoDic = quintoPuntoAlgo.getPeliculasIguales();
-		imprimirQuintoPunto(quintoPuntoDic);
-		/* ------------ */
+		DiccionarioMultipleTDA b = quintoPuntoAlgo.getPeliculasIguales();
+		ConjuntoTDA claves = b.claves();
+		
+		System.out.print("\nSolicitudes de Películas a Distintos Proveederes por Usuario:\n");
+		
+		while(!claves.conjuntoVacio()) {
+			int x = claves.obtener();
+			int usuario = x / 10000;
+			int pelicula = x % 10000;
+			ConjuntoTDA aux2 = b.obtener(x);
+			System.out.print( usuario + ":  " + pelicula + "(");
+			
+			while(!aux2.conjuntoVacio()) {
+				int v = aux2.obtener();
+				System.out.print(v+",");
+				aux2.sacar(v);
+			}
+			System.out.print(")");
+			claves.sacar(x);
+			System.out.println();
+		}
 	}
-	
-	
 	
 	private static String obtenerNombrePorCodigo(TablaTDA tabla, int c) {
 		ColaCadenaTDA colaTabla = tabla.tabla();	
@@ -150,11 +165,9 @@ public class Puntos1y2 {
 			while ( !provs.conjuntoVacio() ) {
 				int p = provs.obtener();
 				cadenaProveedores += obtenerNombrePorCodigo(proveedores, p) + ", ";
-				//cadenaProveedores += p + ", ";
 				provs.sacar(p);
 			}
 			System.out.println( "( " + clave + " ) " + obtenerNombrePorCodigo(peliculas,clave) + " ( " + cadenaProveedores.substring(0,cadenaProveedores.length() - 2) + " )");
-			//System.out.println(clave + " " + cadenaProveedores.substring(0,cadenaProveedores.length() - 2) );
 			c.sacar(clave);
 		}
 	}
@@ -176,29 +189,6 @@ public class Puntos1y2 {
 			int peli = cola.primero();
 			System.out.println( cola.prioridad() + ") " + obtenerNombrePorCodigo(peliculas, peli));
 			cola.desacolar();
-		}
-	}
-	private static void imprimirQuintoPunto(DiccionarioMultipleTDA dic) {
-		System.out.println();
-		System.out.println("Peliculas Iguales");
-		System.out.println("-----------------------");
-		System.out.println("Id    | Pelicula | Proveedores");
-		System.out.println("-----------------------");
-		ConjuntoTDA claves = dic.claves();
-		while(!claves.conjuntoVacio()) {
-			int x = claves.obtener();
-			int a = x/10000;
-			int p = x%10000;
-			ConjuntoTDA aux2 = dic.obtener(x);
-			System.out.print(a+":  "+p+ "(");
-			while(!aux2.conjuntoVacio()) {
-				int v = aux2.obtener();
-				System.out.print(v+",");
-				aux2.sacar(v);
-			}
-			System.out.print(")");
-			claves.sacar(x);
-			System.out.println();
 		}
 	}
 }
