@@ -2,9 +2,7 @@ package misAlgoritmos;
 
 import miApi.ConjuntoTDA;
 import miApi.DiccionarioMultipleTDA;
-import miApi.DiccionarioSimpleTDA;
 import misImplementaciones.DiccionarioMultiple;
-import misImplementaciones.DiccionarioSimple;
 
 public class SolicitudesDistintosProveedores {
 	private int codigoPelicula;

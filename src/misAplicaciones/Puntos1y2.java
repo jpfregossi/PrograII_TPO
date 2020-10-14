@@ -13,21 +13,19 @@ public class Puntos1y2 {
 		ColaTDA listado = LeerArchivos.obtenerMovimientos(peliculas, proveedores);
 		
 		DiezUltimosMovimientos primerPuntoAlgo = new DiezUltimosMovimientos();
-		
+		MayorCantidadDeSolicitudPorPersona segundoPuntoAlgo = new MayorCantidadDeSolicitudPorPersona();
 		MasSolicitadas tercerPuntoAlgo = new MasSolicitadas();
 		Ranking cuartoPuntoAlgo = new Ranking();
-
-
 		SolicitudesDistintosProveedores quintoPuntoAlgo = new SolicitudesDistintosProveedores();
 		while ( !listado.colaVacia() ) {
 			int elemento = listado.primero();
 			primerPuntoAlgo.cargar(elemento);
+			segundoPuntoAlgo.cargarPersona(elemento); 
 			tercerPuntoAlgo.cargarMovimiento(listado.primero());
 			cuartoPuntoAlgo.codigo(elemento);
 			quintoPuntoAlgo.codigo(elemento);
 			listado.desacolar();
 		}
-		quintoPuntoAlgo.codigo(141010431);
 		
 		/* Primer Punto */
 		ColaTDA primerPuntoCola = primerPuntoAlgo.getUltimos10Movimientos();
@@ -37,7 +35,10 @@ public class Puntos1y2 {
 		/* ------------- */
 		
 		/* Segundo Punto */
+        segundoPuntoAlgo.cargarColaPrioridad();
+		ColaTDA segundoPuntoCola = segundoPuntoAlgo.getIDPersonasOrdenadas();
 		
+		imprimirSegundoPunto(segundoPuntoCola);
 		/* ------------- */
 
 		/* Tercer Punto */		
@@ -132,6 +133,17 @@ public class Puntos1y2 {
 			System.out.println(usuario + "  " + nombrePe + ("                    ").substring(0, 20 - nombrePe.length()) + "  " + nombrePr );
 			
 			cola.desacolar();
+		}
+		System.out.println("----------------------------------------------------------");
+	}
+	
+	private static void imprimirSegundoPunto(ColaTDA ColaID) {
+		System.out.println("\nListado de personas que solicitaron mas peliculas:\n");
+		int i;
+		while(!ColaID.colaVacia()) {
+			i = ColaID.primero();
+			System.out.println("ID: " + i);	
+			ColaID.desacolar();
 		}
 		System.out.println("----------------------------------------------------------");
 	}
